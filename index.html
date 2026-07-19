@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasun Viraj — Civil & Environmental Engineer</title>
+<meta name="description" content="Portfolio of Kasun Viraj, Civil and Environmental Engineering graduate specializing in BIM modeling, structural design, and infrastructure projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E15;
+    --panel:#131A28;
+    --panel-2:#1A2334;
+    --ink:#ECF1F5;
+    --muted:#9AA7BB;
+    --accent:#5B8FE0;
+    --accent-soft:rgba(91,143,224,0.14);
+    --line:rgba(255,255,255,0.08);
+    --body:#C7D2DE;
+    --max:1180px;
+    --nav-w:64px;
+  }
+  :root[data-theme="light"]{
+    --bg:#F4F6F9;
+    --panel:#FFFFFF;
+    --panel-2:#EEF1F6;
+    --ink:#161B26;
+    --muted:#5B6577;
+    --accent:#3E6FC4;
+    --accent-soft:rgba(62,111,196,0.1);
+    --line:rgba(15,25,45,0.1);
+    --body:#333C4D;
+  }
+  body, .side-nav, .mobile-bar, .card, .proj-card, .contact-panel, .intro-strip, .btn, .rev-tag, .photo-card, .photo-backdrop{
+    transition:background-color .35s ease, color .35s ease, border-color .35s ease;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',sans-serif; font-size:clamp(15.5px,1.6vw,17px); line-height:1.65;
+  }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; margin:0; letter-spacing:-0.01em; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  a{ color:inherit; }
+  ::selection{ background:var(--accent); color:var(--bg); }
+  img{ max-width:100%; display:block; }
+
+  /* ================= FIXED SIDE NAV (desktop) ================= */
+  .side-nav{
+    position:fixed; top:0; right:0; bottom:0; width:var(--nav-w); z-index:60;
+    background:var(--panel); border-left:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+    padding:22px 0; overflow-y:auto; overflow-x:hidden;
+  }
+  .side-nav::-webkit-scrollbar{ width:0; }
+  .side-nav .brand-dot{
+    width:9px; height:9px; border-radius:50%; background:var(--accent); flex:none;
+  }
+  .side-nav-top{ display:flex; flex-direction:column; align-items:center; gap:18px; }
+  .theme-toggle{
+    width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--panel-2);
+    color:var(--muted); cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center;
+    transition:color .2s ease, border-color .2s ease, transform .3s ease, background .2s ease;
+    flex:none;
+  }
+  .theme-toggle:hover{ color:var(--accent); border-color:var(--accent); transform:rotate(20deg); }
+  .side-nav ul{ list-style:none; margin:auto 0; padding:14px 0; display:flex; flex-direction:column; gap:24px; align-items:center; min-height:0; }
+  .side-nav a{
+    writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg) scale(1);
+    text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.16em; font-weight:500;
+    text-transform:uppercase; color:var(--muted); padding:5px 0; border-right:2px solid transparent;
+    transition:color .25s ease, border-color .25s ease, transform .25s ease, font-weight .25s ease;
+    transform-origin:center;
+  }
+  .side-nav a:hover, .side-nav a:focus-visible{ color:var(--ink); border-color:var(--muted); outline:none; }
+  .side-nav a.active{ color:var(--accent); border-color:var(--accent); font-weight:600; transform:rotate(180deg) scale(1.06); }
+  .side-nav .foot-mark{ font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); writing-mode:vertical-rl; letter-spacing:0.1em; }
+
+  /* Mobile top bar replaces side nav */
+  .mobile-bar{
+    display:none; position:sticky; top:0; z-index:60; background:rgba(10,14,21,0.9); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line); padding:14px 20px; align-items:center; justify-content:space-between;
+  }
+  .mobile-bar .brand{ font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.04em; display:flex; align-items:center; gap:8px; }
+  .mobile-bar .brand .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); }
+  .mobile-toggle{
+    background:none; border:1px solid var(--line); border-radius:4px; color:var(--ink);
+    padding:7px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; cursor:pointer;
+  }
+  .mobile-menu{
+    display:none; position:fixed; inset:0; z-index:59; background:rgba(10,14,21,0.98);
+    padding:100px 30px 40px; flex-direction:column; gap:6px;
+  }
+  .mobile-menu.open{ display:flex; }
+  .mobile-menu a{
+    text-decoration:none; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:600;
+    padding:14px 0; border-bottom:1px solid var(--line);
+  }
+  @media (max-width:900px){
+    .side-nav{ display:none; }
+    .mobile-bar{ display:flex; }
+    :root{ --nav-w:0px; }
+  }
+
+  main{ margin-right:var(--nav-w); }
+  @media (max-width:900px){ main{ margin-right:0; } }
+
+  /* ================= HERO (split layout) ================= */
+  .hero{
+    display:grid; grid-template-columns:1fr 1.05fr; min-height:100vh; align-items:stretch;
+  }
+  @media (max-width:900px){ .hero{ grid-template-columns:1fr; min-height:auto; } }
+
+  .hero-info{
+    background:var(--panel); padding:56px 48px; display:flex; flex-direction:column; justify-content:center; gap:26px;
+    position:relative; overflow:hidden;
+  }
+  .hero-info::before{
+    content:''; position:absolute; top:-20%; right:-30%; width:70%; height:140%;
+    background:linear-gradient(135deg, rgba(91,143,224,0.07), transparent 60%);
+    transform:rotate(-8deg); pointer-events:none;
+  }
+  .hero-info::after{
+    content:''; position:absolute; bottom:-15%; left:-20%; width:55%; height:60%;
+    background:linear-gradient(135deg, transparent, rgba(91,143,224,0.05) 70%);
+    transform:rotate(12deg); pointer-events:none;
+  }
+  .hero-info > *{ position:relative; z-index:1; }
+  @media (max-width:900px){ .hero-info{ padding:44px 26px; order:1; } }
+  @media (max-width:520px){ .hero-info{ padding:36px 20px; } }
+
+  .brandline{ display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.06em; color:var(--muted); }
+  .brandline .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); }
+
+  .hero-fade{ opacity:0; transform:translateY(14px); animation:heroIn .7s ease forwards; }
+  .hero-fade.d1{ animation-delay:.05s; }
+  .hero-fade.d2{ animation-delay:.18s; }
+  .hero-fade.d3{ animation-delay:.31s; }
+  .hero-fade.d4{ animation-delay:.44s; }
+  .hero-fade.d5{ animation-delay:.57s; }
+  @keyframes heroIn{ to{ opacity:1; transform:translateY(0); } }
+
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .hero-info h1{ font-size:clamp(2.5rem, 5vw, 3.6rem); font-weight:700; line-height:1.05; }
+  .hero-info .role{ font-size:1.05rem; color:var(--muted); max-width:480px; }
+  .hero-info .bio{ font-size:0.98rem; color:var(--body); max-width:480px; }
+
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; }
+  .btn{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.04em;
+    text-decoration:none; padding:13px 22px; border-radius:3px; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-primary{ background:var(--accent); color:#0A1220; font-weight:700; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(91,143,224,0.3); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--ink); }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+
+  .hero-contacts{ display:flex; gap:18px; margin-top:8px; }
+  .hero-contacts a{
+    width:38px; height:38px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center;
+    text-decoration:none; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:14px;
+    transition:border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .hero-contacts a:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+
+  /* Photo panel */
+  .hero-photo{
+    position:relative; overflow:hidden; background:var(--bg);
+    min-height:360px; display:flex; align-items:center; justify-content:center; padding:56px;
+  }
+  @media (max-width:900px){ .hero-photo{ order:2; min-height:46vh; padding:36px 26px; } }
+
+  .photo-stack{ position:relative; width:100%; max-width:300px; }
+  .photo-glow{
+    position:absolute; top:50%; left:50%; width:150%; height:150%; transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(91,143,224,0.28), transparent 68%);
+    filter:blur(26px); z-index:0; pointer-events:none;
+  }
+  .photo-backdrop{
+    position:absolute; inset:0; transform:translate(14px,14px); z-index:1;
+    background:linear-gradient(135deg, var(--accent), rgba(91,143,224,0.15));
+    border-radius:14px; opacity:0.55;
+  }
+  .photo-card{
+    position:relative; z-index:2; width:100%; aspect-ratio:3/4; overflow:hidden;
+    border-radius:14px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.55); border:1px solid var(--line);
+  }
+  .photo-card img{
+    width:100%; height:100%; object-fit:cover; object-position:top center;
+    animation:kenburns 26s ease-in-out infinite alternate;
+  }
+  @keyframes kenburns{ from{ transform:scale(1); } to{ transform:scale(1.045); } }
+  .photo-card::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(10,14,21,0.4), transparent 45%);
+  }
+  .contour-seam{ position:absolute; left:0; top:0; bottom:0; width:70px; transform:translateX(-50%); z-index:2; opacity:0.35; pointer-events:none; }
+  @media (max-width:900px){ .contour-seam{ display:none; } }
+
+  .scroll-cue{
+    position:absolute; left:0; top:50%; transform:translate(-50%,-50%); z-index:5;
+    width:54px; height:54px; border-radius:50%; background:var(--accent); color:#0A1220;
+    display:flex; align-items:center; justify-content:center; text-decoration:none;
+    box-shadow:0 12px 28px rgba(91,143,224,0.35); transition:transform .2s ease, box-shadow .2s ease;
+    animation:bob 2.6s ease-in-out infinite;
+  }
+  .scroll-cue:hover{ transform:translate(-50%,-50%) scale(1.08); box-shadow:0 16px 34px rgba(91,143,224,0.45); }
+  @keyframes bob{ 0%,100%{ margin-top:0; } 50%{ margin-top:8px; } }
+  @media (max-width:900px){ .scroll-cue{ display:none; } }
+
+  /* ================= Section shell ================= */
+  section{ padding:88px 48px; }
+  @media (max-width:640px){ section{ padding:64px 22px; } }
+  .section-inner{ max-width:var(--max); margin:0 auto; }
+  .section-head{
+    display:flex; align-items:baseline; gap:18px; margin-bottom:42px; border-bottom:1px solid var(--line); padding-bottom:18px;
+  }
+  .section-num{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--accent); font-weight:600; }
+  .section-head h2{ font-size:1.85rem; font-weight:700; }
+  .panel-bg{ background:var(--panel); }
+
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .stagger-item{ opacity:0; transform:translateY(16px); transition:opacity .55s ease, transform .55s ease; }
+  .stagger-item.in{ opacity:1; transform:translateY(0); }
+
+  /* ================= About / intro strip ================= */
+  .intro-strip{
+    background:var(--panel-2); border:1px solid var(--line); border-radius:6px; padding:32px 36px;
+    display:flex; flex-wrap:wrap; gap:26px; align-items:center; justify-content:space-between; margin-bottom:64px;
+  }
+  .intro-strip p{ margin:0; max-width:56ch; color:var(--body); font-size:1rem; }
+
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
+  .lede{ font-size:1.12rem; font-weight:500; max-width:60ch; }
+  .about-grid p.body-p{ color:var(--body); }
+  .stat-list{ display:grid; border-top:1px solid var(--line); }
+  .stat-row{ display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line); font-family:'JetBrains Mono',monospace; font-size:13px; }
+  .stat-row span:first-child{ color:var(--muted); }
+  .stat-row span:last-child{ font-weight:600; text-align:right; }
+
+  /* ================= Skills ================= */
+  .skills-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  @media (max-width:760px){ .skills-cols{ grid-template-columns:1fr; } }
+  .skills-col{ padding:28px 28px; background:var(--panel); }
+  .skills-col h3{ font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; font-family:'JetBrains Mono',monospace; margin-bottom:16px; color:var(--accent); }
+  .skills-col ul{ list-style:none; margin:0; padding:0; }
+  .skills-col li{ padding:8px 0; border-bottom:1px dashed var(--line); font-size:0.95rem; display:flex; align-items:center; gap:10px; color:var(--body); }
+  .skills-col li:last-child{ border-bottom:none; }
+  .skills-col li::before{ content:''; width:5px; height:5px; background:var(--accent); flex:none; border-radius:50%; }
+
+  /* ================= Timeline ================= */
+  .timeline{ position:relative; padding-left:32px; }
+  .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .t-item{ position:relative; padding-bottom:38px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{ content:''; position:absolute; left:-32px; top:4px; width:11px; height:11px; background:var(--bg); border:2px solid var(--accent); border-radius:50%; }
+  .t-when{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent); font-weight:600; letter-spacing:0.04em; }
+  .t-title{ font-family:'Space Grotesk',sans-serif; font-size:1.14rem; font-weight:600; margin-top:4px; }
+  .t-org{ font-size:0.92rem; color:var(--muted); margin-top:2px; }
+  .t-desc{ margin-top:8px; font-size:0.95rem; max-width:60ch; color:var(--body); }
+
+  /* ================= Revision table ================= */
+  .rev-table{ width:100%; border-collapse:collapse; font-size:0.92rem; }
+  .rev-table th{ font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; text-align:left; padding:10px 14px; border-bottom:1.5px solid var(--accent); color:var(--muted); }
+  .rev-table td{ padding:18px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .rev-table tr:last-child td{ border-bottom:none; }
+  .rev-table tr:hover td{ background:rgba(91,143,224,0.06); }
+  .rev-no{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--accent); white-space:nowrap; }
+  .rev-date{ font-family:'JetBrains Mono',monospace; white-space:nowrap; color:var(--muted); }
+  .rev-title{ font-weight:600; }
+  .rev-desc{ color:var(--muted); font-size:0.88rem; margin-top:3px; }
+  .rev-tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:3px; background:var(--accent-soft); color:var(--accent); letter-spacing:0.05em; white-space:nowrap; }
+  @media (max-width:640px){
+    .rev-table thead{ display:none; }
+    .rev-table, .rev-table tbody, .rev-table tr, .rev-table td{ display:block; width:100%; }
+    .rev-table tr{ padding:14px 0; border-bottom:1px solid var(--line); }
+    .rev-table td{ border-bottom:none; padding:3px 0; }
+  }
+
+  /* ================= Projects ================= */
+  .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:900px){ .proj-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .proj-grid{ grid-template-columns:1fr; } }
+  .proj-card{
+    position:relative; border:1px solid var(--line); background:var(--panel); border-radius:6px;
+    padding:24px 20px; min-height:170px; display:flex; flex-direction:column; justify-content:space-between;
+    transition:border-color .25s ease, transform .25s ease, background .25s ease;
+  }
+  .proj-card:hover{ border-color:var(--accent); transform:translateY(-4px); background:var(--panel-2); }
+  .proj-tag{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--muted); text-transform:uppercase; }
+  .proj-name{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.04rem; margin-top:10px; }
+  .proj-status{ margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; color:var(--muted); }
+
+  /* Filled project card (has real images) */
+  .proj-card.filled{ padding:0; overflow:hidden; cursor:pointer; min-height:220px; }
+  .proj-card.filled .proj-cover{ position:relative; width:100%; height:170px; overflow:hidden; }
+  .proj-card.filled .proj-cover img, .proj-card.filled .proj-cover video{
+    width:100%; height:100%; object-fit:cover; transition:transform .4s ease;
+  }
+  .proj-card.filled:hover .proj-cover img, .proj-card.filled:hover .proj-cover video{ transform:scale(1.06); }
+  .proj-card[data-gallery="rextro2025"] .proj-cover img,
+  .proj-card[data-gallery="revit2024"] .proj-cover img{
+    object-position:center 25%;
+  }
+  .proj-card.filled .proj-cover::after{
+    content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,14,21,0.75), transparent 55%);
+  }
+  .proj-card.filled .proj-count{
+    position:absolute; top:10px; right:10px; z-index:2; background:rgba(10,14,21,0.7); color:var(--ink);
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:4px 9px; border-radius:20px; border:1px solid var(--line);
+  }
+  .proj-card.filled .proj-play-badge{
+    position:absolute; top:10px; left:10px; z-index:2; width:26px; height:26px; border-radius:50%;
+    background:rgba(10,14,21,0.7); color:var(--ink); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-size:10px;
+  }
+  .proj-card.filled .proj-body{ padding:16px 18px 20px; }
+  .proj-card.filled .proj-status.done{ color:var(--accent); }
+  .proj-card.filled .proj-status.done::before{ content:'● '; }
+
+  /* Lightbox */
+  .lightbox{
+    display:none; position:fixed; inset:0; z-index:100; background:rgba(6,9,15,0.94);
+    align-items:center; justify-content:center; padding:40px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:min(90vw,900px); max-height:80vh; object-fit:contain; border-radius:6px; box-shadow:0 30px 70px rgba(0,0,0,0.6); }
+  .lightbox video{ max-width:min(90vw,900px); max-height:80vh; border-radius:6px; box-shadow:0 30px 70px rgba(0,0,0,0.6); background:#000; }
+  .lightbox-close{
+    position:absolute; top:22px; right:28px; background:none; border:1px solid var(--line); color:var(--ink);
+    width:40px; height:40px; border-radius:50%; font-size:18px; cursor:pointer; transition:border-color .2s ease, color .2s ease;
+  }
+  .lightbox-close:hover{ border-color:var(--accent); color:var(--accent); }
+  .lightbox-nav{
+    position:absolute; top:50%; transform:translateY(-50%); background:none; border:1px solid var(--line); color:var(--ink);
+    width:46px; height:46px; border-radius:50%; font-size:18px; cursor:pointer; transition:border-color .2s ease, color .2s ease;
+  }
+  .lightbox-nav:hover{ border-color:var(--accent); color:var(--accent); }
+  .lightbox-prev{ left:20px; }
+  .lightbox-next{ right:20px; }
+  .lightbox-caption{
+    position:absolute; bottom:26px; left:0; right:0; text-align:center; font-family:'JetBrains Mono',monospace;
+    font-size:12px; color:var(--muted); letter-spacing:0.04em;
+  }
+  @media (max-width:640px){ .lightbox-nav{ width:38px; height:38px; } .lightbox-prev{ left:8px; } .lightbox-next{ right:8px; } }
+
+  /* ================= Involvement ================= */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:760px){ .two-col{ grid-template-columns:1fr; } }
+  .card{ border:1px solid var(--line); padding:24px; background:var(--panel); border-radius:6px; transition:border-color .2s ease, transform .2s ease; }
+  .card:hover{ border-color:var(--line); transform:translateY(-2px); }
+  .card h3{ font-size:1.02rem; font-weight:600; margin-bottom:10px; }
+  .card p{ font-size:0.92rem; color:var(--muted); margin:0; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .pill{ font-family:'JetBrains Mono',monospace; font-size:10.5px; border:1px solid var(--line); padding:6px 12px; border-radius:20px; color:var(--body); }
+
+  /* ================= Contact ================= */
+  .contact-panel{
+    border:1px solid var(--line); background:var(--panel-2); border-radius:8px;
+    padding:48px 40px; display:grid; grid-template-columns:1.1fr 1fr; gap:36px; align-items:center;
+  }
+  @media (max-width:760px){ .contact-panel{ grid-template-columns:1fr; padding:32px 24px; } }
+  .contact-list{ display:flex; flex-direction:column; gap:16px; }
+  .contact-list a{ text-decoration:none; font-size:1.05rem; font-family:'Space Grotesk',sans-serif; font-weight:600; border-bottom:1px solid var(--line); padding-bottom:6px; width:fit-content; transition:border-color .2s ease, color .2s ease; }
+  .contact-list a:hover, .contact-list a:focus-visible{ border-color:var(--accent); color:var(--accent); outline:none; }
+
+  /* ================= Truss divider ================= */
+  .truss-divider{ width:100%; line-height:0; overflow:hidden; background:var(--bg); }
+  .truss-divider svg{ display:block; width:100%; height:40px; }
+
+  /* ================= Contour background (site-plan texture) ================= */
+  #about, #experience{ position:relative; overflow:hidden; }
+  .contour-bg{ position:absolute; inset:0; z-index:0; opacity:0.5; pointer-events:none; }
+  #about .section-inner, #experience .section-inner{ position:relative; z-index:1; }
+
+  footer{ text-align:center; padding:30px 24px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); border-top:1px solid var(--line); }
+
+  .scroll-progress{
+    position:fixed; top:0; left:0; height:3px; width:0%; z-index:100;
+    background:linear-gradient(90deg, var(--accent), #8FC3FF);
+    transition:width .1s linear;
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- MOBILE TOP BAR -->
+<div class="mobile-bar">
+  <div class="brand"><span class="dot"></span>H.K. VIRAJ</div>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle light/dark theme">☾</button>
+    <button class="mobile-toggle" id="mobileToggle">MENU</button>
+  </div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">Profile</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#achievements">Achievements</a>
+  <a href="#projects">Gallery</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- FIXED SIDE NAV (desktop) -->
+<nav class="side-nav" aria-label="Section navigation">
+  <div class="side-nav-top">
+    <span class="brand-dot"></span>
+    <button class="theme-toggle" id="themeToggleDesktop" aria-label="Toggle light/dark theme">☾</button>
+  </div>
+  <ul>
+    <li><a href="#about" data-sec="about">Profile</a></li>
+    <li><a href="#skills" data-sec="skills">Skills</a></li>
+    <li><a href="#experience" data-sec="experience">Experience</a></li>
+    <li><a href="#achievements" data-sec="achievements">Achievements</a></li>
+    <li><a href="#projects" data-sec="projects">Gallery</a></li>
+    <li><a href="#contact" data-sec="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-info">
+      <div class="brandline hero-fade d1"><span class="dot"></span>H.K. VIRAJ PORTFOLIO</div>
+      <div class="eyebrow hero-fade d2">Hello, I'm</div>
+      <h1 class="hero-fade d2">Kasun Viraj</h1>
+      <p class="role hero-fade d3">A Civil &amp; Environmental Engineering graduate from the University of Ruhuna, focused on structural design and BIM.</p>
+      <p class="bio hero-fade d3">I work across structural analysis, Building Information Modeling, and site delivery — turning drawings into buildings that hold up.</p>
+      <div class="hero-actions hero-fade d4">
+        <a class="btn btn-primary" href="mailto:kasunviraj2001@gmail.com">Hire Me</a>
+        <a class="btn btn-ghost" href="assets/Kasun_Viraj_CV.pdf" download>Download CV</a>
+      </div>
+      <div class="hero-contacts hero-fade d5">
+        <a href="mailto:kasunviraj2001@gmail.com" title="Email" aria-label="Email">@</a>
+        <a href="tel:+94717491844" title="Phone" aria-label="Phone">☎</a>
+        <a href="https://www.linkedin.com/in/kasunviraj" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">in</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <svg class="contour-seam" viewBox="0 0 70 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C30,80 10,140 40,180 S20,280 45,320 S15,420 40,460 S25,560 45,600 S20,700 40,760" fill="none" stroke="#5B8FE0" stroke-width="1"/>
+        <path d="M-10,90 C20,130 0,190 30,230 S10,330 35,370 S5,470 30,510 S15,610 35,650 S10,750 30,790" fill="none" stroke="#5B8FE0" stroke-width="1"/>
+      </svg>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to profile section">↓</a>
+      <div class="photo-stack">
+        <div class="photo-glow"></div>
+        <div class="photo-backdrop"></div>
+        <div class="photo-card">
+          <img src="assets/profile_side.jpeg" alt="Kasun Viraj">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="truss-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="trussPattern" width="60" height="40" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="8" x2="60" y2="8" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="0" y1="32" x2="60" y2="32" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="0" y1="8" x2="30" y2="32" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="30" y1="32" x2="60" y2="8" stroke="var(--line)" stroke-width="1.5"/>
+          <circle cx="0" cy="8" r="2.5" fill="var(--accent)" opacity="0.55"/>
+          <circle cx="30" cy="32" r="2.5" fill="var(--accent)" opacity="0.55"/>
+          <circle cx="60" cy="8" r="2.5" fill="var(--accent)" opacity="0.55"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="40" fill="url(#trussPattern)"/>
+    </svg>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <svg class="contour-bg" viewBox="0 0 1200 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50,80 C150,40 300,120 500,80 S850,20 1050,70 S1250,110 1350,80" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M-50,160 C150,120 320,190 520,150 S860,100 1060,150 S1250,190 1350,155" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M-50,250 C170,210 330,280 530,240 S870,190 1070,235 S1250,270 1350,245" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M-50,340 C170,300 340,365 540,325 S880,285 1080,325 S1250,355 1350,335" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+      <path d="M-50,420 C180,390 350,440 550,405 S890,375 1090,405 S1250,425 1350,410" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+    </svg>
+    <div class="section-inner reveal">
+      <div class="intro-strip">
+        <p>Civil and Environmental Engineering graduate of the University of Ruhuna, with hands-on site experience and four consecutive years placing in university-level Revit design competitions.</p>
+        <a class="btn btn-ghost" href="assets/Kasun_Viraj_CV.pdf" download>Download CV</a>
+      </div>
+
+      <div class="section-head"><span class="section-num">01</span><h2>Profile</h2></div>
+      <div class="about-grid">
+        <div>
+          <p class="lede">Comfortable moving between design software, structural analysis tools, and site documentation — with a diploma in BIM to back it up.</p>
+          <p class="body-p">Coursework and practical training span structural analysis and design, BIM coordination, and site supervision, backed by a Diploma in Building Information Modeling with Revit from Archi Tech CAD Academy.</p>
+        </div>
+        <div class="stat-list">
+          <div class="stat-row"><span>Degree</span><span>BSc Eng. (Hons), Civil &amp; Env. Eng.</span></div>
+          <div class="stat-row"><span>OGPA</span><span>3.15</span></div>
+          <div class="stat-row"><span>Graduating</span><span>2026</span></div>
+          <div class="stat-row"><span>BIM Diploma</span><span>Issued Jan 2025</span></div>
+          <div class="stat-row"><span>Languages</span><span>English, Sinhala</span></div>
+          <div class="stat-row"><span>Location</span><span>Kalutara, Sri Lanka</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="panel-bg">
+    <div class="section-inner reveal">
+      <div class="section-head"><span class="section-num">02</span><h2>Technical Skills</h2></div>
+      <div class="skills-cols">
+        <div class="skills-col">
+          <h3>BIM &amp; Visualization</h3>
+          <ul>
+            <li>Autodesk Revit</li>
+            <li>Autodesk Navisworks</li>
+            <li>Twinmotion</li>
+            <li>Enscape</li>
+          </ul>
+        </div>
+        <div class="skills-col">
+          <h3>Design &amp; Analysis</h3>
+          <ul>
+            <li>Autodesk AutoCAD</li>
+            <li>Autodesk Civil 3D</li>
+            <li>SAP2000</li>
+            <li>ETABS</li>
+            <li>Solidworks</li>
+          </ul>
+        </div>
+        <div class="skills-col">
+          <h3>Planning &amp; Documentation</h3>
+          <ul>
+            <li>Primavera P6</li>
+            <li>MS Office</li>
+            <li>MATLAB</li>
+            <li>QGIS</li>
+            <li>Photoshop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE + EDUCATION -->
+  <section id="experience">
+    <svg class="contour-bg" viewBox="0 0 1200 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50,80 C150,40 300,120 500,80 S850,20 1050,70 S1250,110 1350,80" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M-50,160 C150,120 320,190 520,150 S860,100 1060,150 S1250,190 1350,155" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M-50,250 C170,210 330,280 530,240 S870,190 1070,235 S1250,270 1350,245" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M-50,340 C170,300 340,365 540,325 S880,285 1080,325 S1250,355 1350,335" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+      <path d="M-50,420 C180,390 350,440 550,405 S890,375 1090,405 S1250,425 1350,410" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+    </svg>
+    <div class="section-inner reveal">
+      <div class="section-head"><span class="section-num">03</span><h2>Experience &amp; Education</h2></div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-when">AUG 2025 — OCT 2025</div>
+          <div class="t-title">Trainee Civil Engineer</div>
+          <div class="t-org">National Water Supply &amp; Drainage Board</div>
+          <p class="t-desc">Rathmalana–Moratuwa Wastewater Disposal Project Office, Mount Lavinia — three-month site training on a wastewater infrastructure project.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-when">MAY 2024 — AUG 2024</div>
+          <div class="t-title">Trainee Civil Engineer</div>
+          <div class="t-org">Master Hellie's Engineering Consultants (Pvt.) Ltd</div>
+          <p class="t-desc">Three-month traineeship, Battaramulla — exposure to consulting-side structural and civil design work.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-when">JAN 2025</div>
+          <div class="t-title">Diploma in Building Information Modeling with Revit</div>
+          <div class="t-org">Archi Tech CAD Academy (Pvt) Ltd — Credential ID 24123005</div>
+        </div>
+        <div class="t-item">
+          <div class="t-when">2022 — 2026</div>
+          <div class="t-title">B.Sc. Eng. (Hons), Civil &amp; Environmental Engineering</div>
+          <div class="t-org">Faculty of Engineering, University of Ruhuna — OGPA 3.15</div>
+        </div>
+        <div class="t-item">
+          <div class="t-when">2017 — 2019</div>
+          <div class="t-title">G.C.E. Advanced Level — Combined Mathematics</div>
+          <div class="t-org">Combined Maths A · Chemistry B · Physics B</div>
+        </div>
+      </div>
+    </div>
+  </section>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="panel-bg">
+    <div class="section-inner reveal">
+      <div class="section-head"><span class="section-num">04</span><h2>Revision History — Competitions &amp; Achievements</h2></div>
+      <p style="max-width:60ch; margin:-24px 0 28px; font-size:0.95rem; color:var(--muted);">Four straight years entering the Revit Clash design competition, tracked like a real revision log — each year building on the last.</p>
+      <table class="rev-table">
+        <thead>
+          <tr><th>Rev</th><th>Date</th><th>Description</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rev-no">R04</td>
+            <td class="rev-date">2026</td>
+            <td>
+              <div class="rev-title">Revit Clash Design Competition</div>
+              <div class="rev-desc">Organized by the Civil &amp; Environmental Engineering Society, University of Ruhuna.</div>
+            </td>
+            <td><span class="rev-tag">1ST PLACE</span></td>
+          </tr>
+          <tr>
+            <td class="rev-no">R03</td>
+            <td class="rev-date">2025</td>
+            <td>
+              <div class="rev-title">Revit Clash — REXTRO 2025</div>
+              <div class="rev-desc">Held as part of REXTRO 2025, marking the Faculty of Engineering's Silver Jubilee.</div>
+            </td>
+            <td><span class="rev-tag">CHAMPIONS</span></td>
+          </tr>
+          <tr>
+            <td class="rev-no">R03</td>
+            <td class="rev-date">2025</td>
+            <td>
+              <div class="rev-title">Revit Clash Design Competition</div>
+              <div class="rev-desc">With Ruhuna Engineering Student Chapter of IESL, IESL Young Members' Section, and IESL Ruhuna Chapter, in conjunction with IESL Day 2025.</div>
+            </td>
+            <td><span class="rev-tag">2ND PLACE</span></td>
+          </tr>
+          <tr>
+            <td class="rev-no">R02</td>
+            <td class="rev-date">2024</td>
+            <td>
+              <div class="rev-title">Revit Clash Design Competition</div>
+              <div class="rev-desc">With Ruhuna Engineering Student Chapter of IESL, IESL Young Members' Section, and IESL Ruhuna Chapter, in conjunction with IESL Day 2024.</div>
+            </td>
+            <td><span class="rev-tag">2ND PLACE</span></td>
+          </tr>
+          <tr>
+            <td class="rev-no">R01</td>
+            <td class="rev-date">2024</td>
+            <td><div class="rev-title">Spaghetti Bridge Competition</div></td>
+            <td><span class="rev-tag">TOP 10</span></td>
+          </tr>
+          <tr>
+            <td class="rev-no">R00</td>
+            <td class="rev-date">2023</td>
+            <td><div class="rev-title">Sustainable Building Competition</div></td>
+            <td><span class="rev-tag">TOP 20</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="truss-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="40" fill="url(#trussPattern)"/>
+    </svg>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner reveal">
+      <div class="section-head"><span class="section-num">05</span><h2>Gallery — Achievements &amp; Projects</h2></div>
+      <p style="max-width:64ch; margin:-24px 0 28px; font-size:0.95rem; color:var(--muted);">Award ceremonies, Revit Clash renders, the Celestria floating-city concept, interior design work, and a Zaozhuang Stadium-inspired 3D model — all in one place. Each card is pre-wired to a folder path, so new uploads slot in automatically.</p>
+      <div class="proj-grid">
+
+        <div class="proj-card filled" data-gallery="revit2026" data-tag="Rev 04 · 2026" data-name="Revit Clash — 1st Place">
+          <div class="proj-cover">
+            <img src="assets/projects/01-revit-clash-2026-1.jpg" alt="Revit Clash 2026 first place" onerror="handleMissingCover(this)">
+            <span class="proj-count">1 / 3</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Rev 04 · 2026</span>
+            <div class="proj-name">Revit Clash — 1st Place</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="rextro2025" data-tag="Rev 03 · 2025" data-name="REXTRO 2025 — Champions">
+          <div class="proj-cover">
+            <img src="assets/projects/02-rextro-2025-champions-1.jpg" alt="REXTRO 2025 Revit Clash champions award ceremony" onerror="handleMissingCover(this)">
+            <span class="proj-count">1 / 3</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Rev 03 · 2025</span>
+            <div class="proj-name">REXTRO 2025 — Champions</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="revit2025" data-tag="Rev 03 · 2025" data-name="Revit Clash — 2nd Place">
+          <div class="proj-cover">
+            <img src="assets/projects/03-revit-clash-2025-1.jpg" alt="Revit Clash 2025 second place" onerror="handleMissingCover(this)">
+            <span class="proj-count">1 / 3</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Rev 03 · 2025</span>
+            <div class="proj-name">Revit Clash — 2nd Place</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="revit2024" data-tag="Rev 02 · 2024" data-name="Revit Clash — 2nd Place">
+          <div class="proj-cover">
+            <img src="assets/projects/04-revit-clash-2024-1.jpg" alt="Revit Clash 2024 second place" onerror="handleMissingCover(this)">
+            <span class="proj-count">1 / 3</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Rev 02 · 2024</span>
+            <div class="proj-name">Revit Clash — 2nd Place</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="techno2024" data-tag="Techno 2024" data-name="Sustainable Research Building">
+          <div class="proj-cover">
+            <img src="assets/projects/05-techno-2024-1.jpg" alt="Techno 2024 sustainable research building model" onerror="handleMissingCover(this)">
+            <span class="proj-count">1 / 3</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Techno 2024</span>
+            <div class="proj-name">Sustainable Research Building</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="structuralzone" data-tag="REXTRO 2025" data-name="Structural Engineering Zone">
+          <div class="proj-cover">
+            <img src="assets/projects/06-structural-zone-1.jpg" alt="Structural Engineering Zone shaking table" onerror="handleMissingCover(this)">
+            <span class="proj-play-badge" title="Includes video">▶</span>
+            <span class="proj-count">1 / 2</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">REXTRO 2025</span>
+            <div class="proj-name">Structural Engineering Zone</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="celestria2023" data-tag="Techno 2023" data-name="Celestria — Floating City">
+          <div class="proj-cover">
+            <img src="assets/projects/07-celestria-2023-1.jpg" alt="Celestria sustainable floating city building model, aerial view" onerror="handleMissingCover(this)">
+            <span class="proj-count">1 / 3</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Techno 2023</span>
+            <div class="proj-name">Celestria — Floating City</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="interiordesign" data-tag="Interior Design" data-name="Interior Design Work">
+          <div class="proj-cover">
+            <img src="assets/projects/08-interior-design-1.jpg" alt="Interior design render" onerror="handleMissingCover(this)">
+            <span class="proj-count">1 / 5</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">Interior Design</span>
+            <div class="proj-name">Interior Design Work</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="zaozhuang" data-tag="3D Model" data-name="Zaozhuang Stadium — 3D Model">
+          <div class="proj-cover">
+            <video src="assets/projects/09-zaozhuang-stadium-video.mp4" muted preload="metadata" playsinline onerror="handleMissingCover(this)"></video>
+            <span class="proj-play-badge" title="Video">▶</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">3D Model</span>
+            <div class="proj-name">Zaozhuang Stadium — 3D Model</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="apartment" data-tag="3D Model" data-name="Apartment Building Model">
+          <div class="proj-cover">
+            <video src="assets/projects/10-apartment-building-video.mp4" muted preload="metadata" playsinline onerror="handleMissingCover(this)"></video>
+            <span class="proj-play-badge" title="Video">▶</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">3D Model</span>
+            <div class="proj-name">Apartment Building Model</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+        <div class="proj-card filled" data-gallery="autoklub" data-tag="3D Model" data-name="Hungarian Autoklub Headquarters">
+          <div class="proj-cover">
+            <video src="assets/projects/11-hungarian-autoklub-video.mp4" muted preload="metadata" playsinline onerror="handleMissingCover(this)"></video>
+            <span class="proj-play-badge" title="Video">▶</span>
+          </div>
+          <div class="proj-body">
+            <span class="proj-tag">3D Model</span>
+            <div class="proj-name">Hungarian Autoklub Headquarters</div>
+            <div class="proj-status done">View gallery</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INVOLVEMENT -->
+  <section id="involvement" class="panel-bg">
+    <div class="section-inner reveal">
+      <div class="section-head"><span class="section-num">06</span><h2>Research &amp; Involvement</h2></div>
+      <div class="two-col">
+        <div class="card">
+          <h3>Research Project</h3>
+          <p>Properties of high-volume Rice Husk Ash (RHA) and Eggshell Ash (ESA) cement mortar incorporating treated corn fibers.</p>
+        </div>
+        <div class="card">
+          <h3>Comprehensive Design Project</h3>
+          <p>Design of the Tangalle Pradeshiya Sabha fair and related infrastructure — a four-storey building with fair space, parking, banks, post office, shops, open area, and auditorium.</p>
+        </div>
+        <div class="card">
+          <h3>3D Designer — Sustainable Building Project</h3>
+          <p>Techno 2024: a sustainable four-storey research building design model. Techno 2023: "Celestria," a sustainable floating-city building model.</p>
+        </div>
+        <div class="card">
+          <h3>Structural Engineering Zone — REXTRO 2025</h3>
+          <p>Project member building a shaking table to simulate seismic behaviour in scaled structural models.</p>
+        </div>
+      </div>
+      <div style="margin-top:44px;">
+        <h3 style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:14px;">Memberships</h3>
+        <div class="tag-row">
+          <span class="pill">Student Member, Institute of Engineers Sri Lanka (IESL)</span>
+          <span class="pill">Student Member, American Society of Civil Engineers (ASCE, UOR)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="truss-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="40" fill="url(#trussPattern)"/>
+    </svg>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner reveal">
+      <div class="section-head"><span class="section-num">07</span><h2>Get in Touch</h2></div>
+      <div class="contact-panel">
+        <div>
+          <p style="max-width:44ch; color:var(--body); margin:0;">Open to graduate civil engineering, structural design, and BIM coordination roles.</p>
+        </div>
+        <div class="contact-list">
+          <a href="mailto:kasunviraj2001@gmail.com">kasunviraj2001@gmail.com</a>
+          <a href="tel:+94717491844">+94 71 749 1844</a>
+          <a href="https://www.linkedin.com/in/kasunviraj" target="_blank" rel="noopener">linkedin.com/in/kasunviraj</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">←</button>
+  <img id="lightboxImg" src="" alt="">
+  <video id="lightboxVideo" controls playsinline style="display:none;"></video>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">→</button>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<footer>
+  © 2026 KASUN VIRAJ — CIVIL &amp; ENVIRONMENTAL ENGINEERING
+</footer>
+
+<script>
+  // Theme toggle (light/dark)
+  (function(){
+    const root = document.documentElement;
+    const toggles = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')];
+    function getStored(){
+      try { return localStorage.getItem('kv-theme'); } catch(e){ return null; }
+    }
+    function store(theme){
+      try { localStorage.setItem('kv-theme', theme); } catch(e){ /* ignore if storage unavailable */ }
+    }
+    function applyTheme(theme){
+      root.setAttribute('data-theme', theme);
+      toggles.forEach(btn => { if (btn) btn.textContent = theme === 'light' ? '☀' : '☾'; });
+      store(theme);
+    }
+    const initial = getStored() || 'dark';
+    applyTheme(initial);
+    toggles.forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        applyTheme(current === 'light' ? 'dark' : 'light');
+      });
+    });
+  })();
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Scroll reveals
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Staggered child reveals (timeline items, skill columns, cards, project cards)
+  const staggerGroups = document.querySelectorAll('.timeline, .skills-cols, .two-col, .proj-grid');
+  staggerGroups.forEach(group => {
+    const items = Array.from(group.children);
+    items.forEach((item, i) => {
+      item.classList.add('stagger-item');
+      item.style.transitionDelay = `${Math.min(i * 70, 400)}ms`;
+    });
+    const groupObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.querySelectorAll('.stagger-item').forEach(el => el.classList.add('in')); } });
+    }, { threshold: 0.1 });
+    groupObserver.observe(group);
+  });
+
+  // Scroll progress bar
+  const scrollProgress = document.getElementById('scrollProgress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const height = h.scrollHeight - h.clientHeight;
+    scrollProgress.style.width = height > 0 ? `${(scrolled / height) * 100}%` : '0%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Active side-nav highlight
+  const navLinks = document.querySelectorAll('.side-nav a');
+  const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href')));
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = '#' + entry.target.id;
+      const link = document.querySelector(`.side-nav a[href="${id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting){
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(sec => { if (sec) navObserver.observe(sec); });
+
+  // Project galleries — each points at the expected file paths.
+  // A card only needs 3 correctly-named files dropped into assets/projects/ to go live; no HTML edits required.
+  const galleries = {
+    revit2026: {
+      title: 'Revit Clash — 1st Place (2026)',
+      images: [
+        { src: 'assets/projects/01-revit-clash-2026-1.jpg', caption: 'Project image 1' },
+        { src: 'assets/projects/01-revit-clash-2026-2.jpg', caption: 'Project image 2' },
+        { src: 'assets/projects/01-revit-clash-2026-3.jpg', caption: 'Project image 3' }
+      ]
+    },
+    rextro2025: {
+      title: 'REXTRO 2025 — Champions',
+      images: [
+        { src: 'assets/projects/02-rextro-2025-champions-1.jpg', caption: 'Receiving the REXTRO 2025 Revit Clash certificate' },
+        { src: 'assets/projects/02-rextro-2025-champions-2.jpg', caption: 'Team with the Championship award — Rs. 40,000' },
+        { src: 'assets/projects/02-rextro-2025-champions-3.jpg', caption: 'Proposed Municipal Council Building — 3D construction drawing' }
+      ]
+    },
+    revit2025: {
+      title: 'Revit Clash — 2nd Place (2025)',
+      images: [
+        { src: 'assets/projects/03-revit-clash-2025-1.jpg', caption: 'Project image 1' },
+        { src: 'assets/projects/03-revit-clash-2025-2.jpg', caption: 'Project image 2' },
+        { src: 'assets/projects/03-revit-clash-2025-3.jpg', caption: 'Project image 3' }
+      ]
+    },
+    revit2024: {
+      title: 'Revit Clash — 2nd Place (2024)',
+      images: [
+        { src: 'assets/projects/04-revit-clash-2024-1.jpg', caption: 'Project image 1' },
+        { src: 'assets/projects/04-revit-clash-2024-2.jpg', caption: 'Project image 2' },
+        { src: 'assets/projects/04-revit-clash-2024-3.jpg', caption: 'Project image 3' }
+      ]
+    },
+    techno2024: {
+      title: 'Techno 2024 — Sustainable Research Building',
+      images: [
+        { src: 'assets/projects/05-techno-2024-1.jpg', caption: 'Project image 1' },
+        { src: 'assets/projects/05-techno-2024-2.jpg', caption: 'Project image 2' },
+        { src: 'assets/projects/05-techno-2024-3.jpg', caption: 'Project image 3' }
+      ]
+    },
+    structuralzone: {
+      title: 'Structural Engineering Zone — REXTRO 2025',
+      images: [
+        { src: 'assets/projects/06-structural-zone-video.mp4', caption: 'Shaking table demonstration — walkthrough video', type: 'video' },
+        { src: 'assets/projects/06-structural-zone-1.jpg', caption: 'Shaking table — photo' }
+      ]
+    },
+    celestria2023: {
+      title: 'Celestria — Techno 2023',
+      images: [
+        { src: 'assets/projects/07-celestria-2023-1.jpg', caption: 'Aerial view — floating city model with marina and skyline' },
+        { src: 'assets/projects/07-celestria-2023-2.jpg', caption: 'Ground-level view — beach, palms, and central building' },
+        { src: 'assets/projects/07-celestria-2023-3.jpg', caption: 'Top-down view — courtyard, solar canopy, and dome' }
+      ]
+    },
+    interiordesign: {
+      title: 'Interior Design Work',
+      images: [
+        { src: 'assets/projects/08-interior-design-1.jpg', caption: 'Interior design 1' },
+        { src: 'assets/projects/08-interior-design-2.jpg', caption: 'Interior design 2' },
+        { src: 'assets/projects/08-interior-design-3.jpg', caption: 'Interior design 3' },
+        { src: 'assets/projects/08-interior-design-4.jpg', caption: 'Interior design 4' },
+        { src: 'assets/projects/08-interior-design-5.jpg', caption: 'Interior design 5' }
+      ]
+    },
+    zaozhuang: {
+      title: 'Zaozhuang Stadium — 3D Model',
+      images: [
+        { src: 'assets/projects/09-zaozhuang-stadium-video.mp4', caption: 'Zaozhuang Stadium-inspired 3D model — walkthrough video', type: 'video' }
+      ]
+    },
+    apartment: {
+      title: 'Apartment Building Model',
+      images: [
+        { src: 'assets/projects/10-apartment-building-video.mp4', caption: 'Apartment building — 3D model walkthrough video', type: 'video' }
+      ]
+    },
+    autoklub: {
+      title: 'Hungarian Autoklub Headquarters',
+      images: [
+        { src: 'assets/projects/11-hungarian-autoklub-video.mp4', caption: 'Hungarian Autoklub Headquarters — 3D model walkthrough video', type: 'video' }
+      ]
+    }
+  };
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  let currentGallery = null;
+  let currentIndex = 0;
+
+  function openLightbox(key, index){
+    const gallery = galleries[key];
+    if (!gallery) return;
+    currentGallery = gallery;
+    currentIndex = index;
+    showImage();
+    lightbox.classList.add('open');
+  }
+  function showImage(){
+    const item = currentGallery.images[currentIndex];
+    const isVideo = item.type === 'video' || /\.(mp4|webm|mov)$/i.test(item.src);
+    if (isVideo){
+      lightboxVideo.src = item.src;
+      lightboxVideo.style.display = 'block';
+      lightboxImg.style.display = 'none';
+    } else {
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.caption;
+      lightboxImg.style.display = 'block';
+      lightboxVideo.pause();
+      lightboxVideo.removeAttribute('src');
+      lightboxVideo.style.display = 'none';
+    }
+    lightboxCaption.textContent = `${currentGallery.title} — ${item.caption} (${currentIndex + 1}/${currentGallery.images.length})`;
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightboxVideo.pause();
+    lightboxVideo.removeAttribute('src');
+  }
+  function nextImage(){ currentIndex = (currentIndex + 1) % currentGallery.images.length; showImage(); }
+  function prevImage(){ currentIndex = (currentIndex - 1 + currentGallery.images.length) % currentGallery.images.length; showImage(); }
+
+  // If a cover image 404s (file not uploaded yet), revert that card to the plain "awaiting upload" state.
+  function handleMissingCover(imgEl){
+    const card = imgEl.closest('.proj-card');
+    if (!card) return;
+    card.classList.remove('filled');
+    const tag = card.dataset.tag || '';
+    const name = card.dataset.name || '';
+    card.innerHTML = `<div><span class="proj-tag">${tag}</span><div class="proj-name">${name}</div></div><div class="proj-status">Awaiting upload</div>`;
+  }
+  window.handleMissingCover = handleMissingCover;
+
+  document.querySelectorAll('.proj-card[data-gallery]').forEach(card => {
+    card.addEventListener('click', () => {
+      if (card.classList.contains('filled')) openLightbox(card.dataset.gallery, 0);
+    });
+  });
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxNext').addEventListener('click', nextImage);
+  document.getElementById('lightboxPrev').addEventListener('click', prevImage);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+  });
+</script>
+
+</body>
+</html>
